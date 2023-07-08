@@ -47,7 +47,7 @@ def get_image_list(filePath, nameList):
     return img_list
 
 
-# ???????
+# 提取特征并保存
 def get_feat(image_list, name_list, label_list, savePath):
     i = 0
     for image in image_list:
@@ -55,7 +55,7 @@ def get_feat(image_list, name_list, label_list, savePath):
             # ???????  ?3??-1
             image = np.reshape(image, (image_height, image_width, 3))
         except:
-            print('??????????size??????',name_list[i])
+            print('发送了异常，图片大小size不满足要求：',name_list[i])
             continue
         gray = rgb2gray(image) / 255.0
         # ???????????
@@ -68,20 +68,20 @@ def get_feat(image_list, name_list, label_list, savePath):
     print("Test features are extracted and saved.")
 
 
-# ??????
+# 变成灰度图片
 def rgb2gray(im):
     gray = im[:, :, 0] * 0.2989 + im[:, :, 1] * 0.5870 + im[:, :, 2] * 0.1140
     return gray
 
 
-# ????????????
+# 获得图片名称与对应的类别
 def get_name_label(file_path):
     print("read label from ",file_path)
     name_list = []
     label_list = []
     with open(file_path) as f:
         for line in f.readlines():
-            #???name label  ???????????3  ?????????????
+            #一般是name label  三部分，所以至少长度为3  所以可以通过这个忽略空白行
             if len(line)>=3:
                 name_list.append(line.split(' ')[0])
                 label_list.append(line.split(' ')[1].replace('\n','').replace('\r',''))
@@ -91,7 +91,7 @@ def get_name_label(file_path):
     return name_list, label_list
 
 
-# ????
+# 提取特征
 def extra_feat():
     train_name, train_label = get_name_label(train_label_path)
     test_name, test_label = get_name_label(test_label_path)
@@ -110,7 +110,8 @@ def mkdir():
         os.mkdir(test_feat_path)
 
 
-# ?????
+
+# 训练和测试
 def train_and_test():
     t0 = time.time()
     features = []
