@@ -148,8 +148,11 @@ def train_and_test():
     # fitting the model for grid search
     grid.fit(features, labels)"""
 
-
-    grid = SVC(C=300, kernel='rbf',gamma=1e2)
+    grid = SVC(C=100, kernel='rbf',gamma=0.0001)
+    scalar=StandardScaler()
+    pca=PCA(n_components=80)
+    features=scalar.fit_transform(features)
+    features=pca.fit_transform(features)
     grid.fit(features, labels)
 
     # 下面的代码是保存模型的
