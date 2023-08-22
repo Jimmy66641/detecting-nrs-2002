@@ -187,18 +187,6 @@ def train_and_test():
     print('time : %f' % (t1 - t0))
     # Parameter setting that gave the best results on the hold out data.
 
-
-    """print('Accuracy Score - SVM - Poly = 1:', metrics.accuracy_score(y_test, y_pred_SVM1))
-    print('')
-
-    print('BEST SVM')
-    print('Accuracy Score - SVM:', metrics.accuracy_score(y_test, y_pred_SVM1))
-    print('Average Precision - SVM:', metrics.average_precision_score(y_test, y_pred_SVM1))
-    print('F1 Score - SVM:', metrics.f1_score(y_test, y_pred_SVM1))
-    print('Precision - SVM:', metrics.precision_score(y_test, y_pred_SVM1))
-    print('Recall - SVM:', metrics.recall_score(y_test, y_pred_SVM1))
-    print('ROC Score - SVM:', roc_auc_score(y_test, y_pred_SVM1))"""
-
 def write_to_txt(list):
     with open('result.txt', 'w') as f:
         f.writelines(list)
