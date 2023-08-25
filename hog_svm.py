@@ -58,7 +58,6 @@ def get_feat(image_list, name_list, label_list, savePath):
             print('发送了异常，图片大小size不满足要求：',name_list[i])
             continue
         gray = rgb2gray(image) / 255.0
-        # ???????????
         fd = hog(gray, orientations=9, block_norm='L1', pixels_per_cell=[6,6], cells_per_block=[2,2], visualize=False)
         fd = np.concatenate((fd, [label_list[i]]))
         fd_name = name_list[i] + '.feat'
